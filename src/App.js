@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/header/header";
+import Sidebar from "./components/sideBar/sidebar";
+import { Container } from "react-bootstrap";
+import HomeScreen from "./screen/homeScreen";
+import "./_app.scss";
+import { useState } from "react";
+import LoginScreen from "./screen/loginScreen/loginScreen";
+import { BrowserRouter as Router, Routes, Route,Redirect } from "react-router-dom";
+import PageNotFound from "./screen/pageNotFound";
+
+const Layout = ({ children }) => {
+  const [sideBar, setSideBar] = useState(false);
+
+  const handleToggleSideBar = () => setSideBar(!sideBar);
+
+  return (
+    <>
+      <Header handleToggleSideBar={handleToggleSideBar} />
+      <div className="app__container">
+        <Sidebar sideBar={sideBar} handleToggleSideBar={handleToggleSideBar} />
+        <Container fluid className="app_main">
+          {children}
+        </Container>
+      </div>
+    </>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout><HomeScreen /></Layout>} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/search" element={<Layout><h1>search result</h1></Layout>} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,0 +1,59 @@
+@import "../../base.scss";
+
+.video {
+    margin-bottom: 1rem;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &__top {
+        margin-bottom: 0.5rem;
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+
+        span {
+            position: absolute;
+            bottom: 0.3rem;
+            right: 0.3rem;
+            color: white;
+            background-color: #080808ec;
+            padding: 0.2rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+
+        }
+    }
+
+    &__title {
+        margin-bottom: 0.1rem;
+        color: white;
+        @include line-clamp(2);
+    }
+
+    &__details {
+        display: flex;
+        align-items: center;
+    }
+
+    &__channel {
+        display: flex;
+        align-items: center;
+        margin: 0.5rem 0;
+
+        img {
+            width: 36px;
+            border-radius: 50%;
+            height: 36px;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        p{
+            margin-bottom: 0;
+        }
+    }
+}

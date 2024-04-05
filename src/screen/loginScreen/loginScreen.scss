@@ -1,0 +1,39 @@
+@import "../../base.scss";
+
+.login {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+    img {
+        width: 130px;
+        height: 130px;
+        object-fit: contain;
+    }
+
+    &__container {
+        background-color: $black-secondary;
+        padding: 2rem;
+        margin: 0 1rem;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            &:focus{
+                outline: none;
+            }
+        }
+
+        p{
+            text-align: center;
+        }
+    }
+}
