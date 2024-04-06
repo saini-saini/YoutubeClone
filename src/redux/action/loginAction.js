@@ -3,6 +3,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { auth } from '../../firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { LOAD_PROFILE, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from "../actionType";
+import { Provider } from "react-redux";
 
 
 export const login = () => async (dispatch) => {
@@ -10,6 +11,7 @@ export const login = () => async (dispatch) => {
         dispatch({ type: LOGIN_REQUEST });
         const provider = new GoogleAuthProvider();
         provider.setCustomParameters({ prompt: 'select_account' });
+        provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl')
         const response = await signInWithPopup(auth, provider);
         // const accessToken = await response.accessToken;
         const user = response.user;

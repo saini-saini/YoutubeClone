@@ -3,8 +3,10 @@ import "./header.scss"
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { MdNotifications, MdApps } from 'react-icons/md'
-
+import { useSelector } from 'react-redux'
 const Header = ({ handleToggleSideBar }) => {
+    const userDetail = useSelector(state => state?.login?.user)
+
     return (
         <div className='border border-dark header'>
             <FaBars className='header__menu' size={26} onClick={() => handleToggleSideBar()} />
@@ -23,7 +25,7 @@ const Header = ({ handleToggleSideBar }) => {
             <div className="header__icons">
                 <MdNotifications size={28} />
                 <MdApps size={28} />
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar" />
+                <img src={userDetail?.photoURL} alt="avatar" />
             </div>
         </div>
     )
