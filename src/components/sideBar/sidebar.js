@@ -8,8 +8,16 @@ import {
   MdLibraryBooks,
   MdHome,
 } from 'react-icons/md'
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/action/loginAction';
 
 const Sidebar = ({ sideBar, handleToggleSideBar }) => {
+
+  const dispatch = useDispatch();
+  const Logout = () => {
+    dispatch(logout())
+  }
+
   return (
     <nav className={sideBar ? "sidebar open" : "sidebar"} onClick={() => handleToggleSideBar(false)}>
       <li>
@@ -19,7 +27,7 @@ const Sidebar = ({ sideBar, handleToggleSideBar }) => {
       <li><MdHistory size={23} /><span>History</span></li>
       <li><MdLibraryBooks size={23} /><span>Library</span></li>
       <hr />
-      <li><MdExitToApp size={23} /><span>Logout</span></li>
+      <li onClick={() => Logout()}><MdExitToApp size={23} /><span>Logout</span></li>
       <hr />
     </nav>
   )

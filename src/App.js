@@ -3,10 +3,11 @@ import Sidebar from "./components/sideBar/sidebar";
 import { Container } from "react-bootstrap";
 import HomeScreen from "./screen/homeScreen";
 import "./_app.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoginScreen from "./screen/loginScreen/loginScreen";
-import { BrowserRouter as Router, Routes, Route,Redirect } from "react-router-dom";
+import { Routes, Route, Redirect, useNavigate } from "react-router-dom";
 import PageNotFound from "./screen/pageNotFound";
+import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
   const [sideBar, setSideBar] = useState(false);
@@ -27,15 +28,22 @@ const Layout = ({ children }) => {
 };
 
 function App() {
+  const navigate = useNavigate();
+  const { accessToken, loading } = useSelector(state => state.login)
+
+  useEffect(() => {
+    if (!loading && !accessToken) {
+      navigate("/login")
+    }
+  }, [accessToken, loading, navigate])
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout><HomeScreen /></Layout>} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/search" element={<Layout><h1>search result</h1></Layout>} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout><HomeScreen /></Layout>} />
+      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/search" element={<Layout><h1>search result</h1></Layout>} />
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
   );
 }
 
