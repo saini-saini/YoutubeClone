@@ -1,12 +1,13 @@
 .app__container{
     display: flex;
-    height: 90vh;
+    // height: 90vh;
+    margin-top: 10vh;
 }
 
-.app_main{
-    overflow-y: scroll;
-}
+// .app_main{
+//     overflow-y: scroll;
+// }
 
-::-webkit-scrollbar{
-    display: none;
-}
+// ::-webkit-scrollbar{
+//     display: none;
+// }

@@ -4,7 +4,6 @@ import {thunk} from 'redux-thunk'
 import { loginrReducer } from './reducer/loginReducer'
 import { homeVideosReducer } from './reducer/videoReducer'
 
-
 const rootReducer = combineReducers({
     login: loginrReducer,
     homeVideos : homeVideosReducer
