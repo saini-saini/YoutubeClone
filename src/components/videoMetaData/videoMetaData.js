@@ -11,7 +11,6 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
   const { viewCount, likeCount } = statistics;
   const { snippet: channelSnippet, statistics: channelStatistics, } = useSelector(state => state?.channelDetails?.channel)
   const subscriptionStatus = useSelector(state => state.channelDetails.subscriptionStatus)
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,12 +25,12 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
         <h5>{title}</h5>
         <div className='d-flex align-items-center justify-content-between py-1'>
           <span>
-            {numeral(viewCount).format('0.a')} Views •{' '}
+            {numeral(viewCount).format('0.a').toUpperCase()} Views •{' '}
             {moment(publishedAt).fromNow()}
           </span>
           <div>
             <span className='mr-3'>
-              <MdThumbUp size={26} />{numeral(likeCount).format('0.a')}
+              <MdThumbUp size={26} />{numeral(likeCount).format('0.a').toUpperCase()}
             </span>
             <span className='mr-3'>
               <MdThumbDown size={26} />
@@ -45,7 +44,7 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
           <img src={channelSnippet?.thumbnails?.default?.url} alt="img" className='rounded-circle' />
           <div className='d-flex flex-column'>
             <span>{channelTitle}</span>
-            <span>{numeral(channelStatistics?.subscriberCount).format('0.a')} Subscribers</span>
+            <span>{numeral(channelStatistics?.subscriberCount).format('0.a').toUpperCase()} Subscribers</span>
           </div>
         </div>
         <button className='btn border-0 p-2 m-2'>{subscriptionStatus ? 'Subscribed' : 'Subscribe'}</button>

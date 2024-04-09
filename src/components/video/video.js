@@ -76,7 +76,7 @@ const navigate = useNavigate();
       </div>
       <div className="video__details">
         <span>
-          <AiFillEye />{numeral(views).format('0.a')} Views •{' '}
+          <AiFillEye />{numeral(views).format('0.a').toUpperCase()} Views •{' '}
         </span>
         <span>
           {moment(publishedAt).fromNow()}
