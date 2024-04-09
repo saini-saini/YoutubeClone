@@ -8,6 +8,7 @@ import LoginScreen from "./screen/loginScreen/loginScreen";
 import { Routes, Route, Redirect, useNavigate } from "react-router-dom";
 import PageNotFound from "./screen/pageNotFound";
 import { useSelector } from "react-redux";
+import WatchScreen from "./screen/watchScreen/watchScreen";
 
 const Layout = ({ children }) => {
   const [sideBar, setSideBar] = useState(false);
@@ -42,6 +43,7 @@ function App() {
       <Route path="/" element={<Layout><HomeScreen /></Layout>} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/search" element={<Layout><h1>search result</h1></Layout>} />
+      <Route path="/watch/:id" element={<Layout><WatchScreen/></Layout>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

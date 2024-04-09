@@ -1,4 +1,4 @@
-import { HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL } from "../actionType";
+import { HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, HOME_VIDEOS_FAIL, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL } from "../actionType";
 import request from "../../api";
 
 
@@ -57,7 +57,7 @@ export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
             payload: {
                 videos: data.items,
                 nextPageToken: data.nextPageToken,
-                category:keyword,
+                category: keyword,
 
             },
         })
@@ -65,6 +65,32 @@ export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
         console.log(error.message)
         dispatch({
             type: HOME_VIDEOS_FAIL,
+            payload: error.message,
+        })
+    }
+}
+
+
+export const getVideoById = id => async dispatch => {
+    try {
+        dispatch({
+            type: SELECTED_VIDEO_REQUEST,
+        })
+
+        const { data } = await request('/videos', {
+            params: {
+                part: 'snippet,statistics',
+                id: id,
+            },
+        })
+        dispatch({
+            type: SELECTED_VIDEO_SUCCESS,
+            payload: data.items[0],
+        })
+    } catch (error) {
+        console.log(error.message)
+        dispatch({
+            type: SELECTED_VIDEO_FAIL,
             payload: error.message,
         })
     }
